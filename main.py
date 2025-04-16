@@ -62,13 +62,17 @@ async def ocr_img(img_rgb: np.ndarray, boxes: List[BoundingBox]) -> Dict[str, st
     textlines = []
     for box in boxes:
         pts = np.array([box.top_left, box.top_right, box.bottom_right, box.bottom_left], dtype=np.int32)
-        textlines.append(Quadrilateral(pts, '', 0))
+        q = Quadrilateral(pts, '', 0)
+        # type hack
+        q.__BBOX_NAME__ = box.name
+        textlines.append(q)
 
     textlines = await dispatch_ocr(config.ocr.ocr, img_rgb, textlines, config.ocr, device, False)
 
     name_text_map: Dict[str, str] = {}
-    for box, textline in zip(boxes, textlines):
-        name_text_map[box.name] = textline.text
+    for textline in textlines:
+        # type hack
+        name_text_map[textline.__BBOX_NAME__] = textline.text
 
     return name_text_map
 
