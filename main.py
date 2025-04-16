@@ -4,11 +4,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from typing import Tuple, Dict, List
 from pydantic import BaseModel, Field
 
-try:
-    import manga_translator
-except ImportError:
-    '''Ignored'''
-
 from manga_translator.config import Config
 from manga_translator.ocr import dispatch as dispatch_ocr, prepare as prepare_ocr
 from manga_translator.utils import Quadrilateral
