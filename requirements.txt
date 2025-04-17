@@ -67,4 +67,5 @@ paddleocr
 paddlepaddle
 paddlepaddle-gpu; sys_platform != 'darwin'
 
+PyInstaller
 -e ./manga_image_translator
