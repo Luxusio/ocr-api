@@ -4,9 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from typing import Tuple, Dict, List
 from pydantic import BaseModel, Field
 
-from manga_translator.config import Config
-from manga_translator.ocr import dispatch as dispatch_ocr, prepare as prepare_ocr
-from manga_translator.utils import Quadrilateral
+from manga_translator.ocr import dispatch as dispatch_ocr, prepare as prepare_ocr, Quadrilateral, OcrConfig
 
 import logging
 import uvicorn
@@ -16,7 +14,7 @@ import numpy as np
 import asyncio
 
 
-config = Config()
+config = OcrConfig()
 device = 'cpu'
 
 logging.basicConfig(level=logging.INFO)
@@ -34,7 +32,7 @@ app.add_middleware(
 )
 
 async def initialize():
-    await prepare_ocr(config.ocr.ocr, device)
+    await prepare_ocr(config.ocr, device)
 
 
 class BoundingBox(BaseModel):
@@ -62,7 +60,7 @@ async def ocr_img(img_rgb: np.ndarray, boxes: List[BoundingBox]) -> Dict[str, st
         q.__BBOX_NAME__ = box.name
         textlines.append(q)
 
-    textlines = await dispatch_ocr(config.ocr.ocr, img_rgb, textlines, config.ocr, device, False)
+    textlines = await dispatch_ocr(config.ocr, img_rgb, textlines, config, device, False)
 
     name_text_map: Dict[str, str] = {}
     for textline in textlines:
