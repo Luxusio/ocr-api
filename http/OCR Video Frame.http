@@ -1,0 +1,12 @@
+### OCR Video Frame
+POST {{baseUrl}}/ocr/video-frame
+Content-Type: application/json
+
+{
+  "video_path": "C:\\Users\\Luxus\\Desktop\\새 폴더\\Replay 2024-11-15 23-57-25.mp4",
+  "frame_number": 10,
+  "boxes": [
+    { "name": "title", "top_left": [284, 223], "top_right": [871, 223], "bottom_right": [871, 261], "bottom_left": [284, 261] },
+    { "name": "accuracy", "top_left": [55, 330], "top_right": [614, 330], "bottom_right": [614, 437], "bottom_left": [55, 437] }
+  ]
+}
