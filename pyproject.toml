@@ -36,19 +36,14 @@ dependencies = [
     "networkx>=3.4.2",
     "numpy==1.26.4",
     "omegaconf>=2.3.0",
-    "onnxruntime>=1.21.1",
     "open-clip-torch>=2.32.0",
     "openai==1.63.0",
     "opencv-python>=4.11.0.86",
-    "paddleocr>=2.10.0",
-    "paddlepaddle>=3.0.0",
-    "paddlepaddle-gpu>=2.6.2 ; sys_platform != 'darwin'",
     "pandas>=2.2.3",
     "protobuf>=3.20.2,<6.0.0",
     "py3langid==0.2.2",
     "pyclipper>=1.3.0.post6",
     "pydantic==2.5.0",
-    "pydensecrf",
     "pyhyphen>=4.0.4",
     "pyinstaller>=6.13.0",
     "python-dotenv>=1.1.0",
@@ -74,7 +69,6 @@ dependencies = [
 ]
 
 [tool.uv.sources]
-pydensecrf = { url = "https://github.com/lucasb-eyer/pydensecrf/archive/refs/heads/master.zip" }
 manga-image-translator = { path = "./manga_image_translator", editable = true }
 
 
