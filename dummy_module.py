@@ -78,4 +78,59 @@ def import_dummy_module():
         'Face': DummyClass,
     })
 
+    add_module('dotenv', {
+        'load_dotenv': dummy_function,
+    })
 
+    add_module('langcodes')
+
+    add_module('regex')
+
+    add_module('py3langid')
+
+    add_module('pyclipper')
+
+    add_module('timm.layers', {
+        'trunc_normal_': dummy_function,
+        'AvgPool2dSame': dummy_function,
+        'DropPath': dummy_function,
+        'Mlp': dummy_function,
+        'GlobalResponseNormMlp': dummy_function,
+        'LayerNorm2d': dummy_function,
+        'LayerNorm': dummy_function,
+        'create_conv2d': dummy_function,
+        'get_act_layer': dummy_function,
+        'make_divisible': dummy_function,
+        'to_ntuple': dummy_function,
+    })
+
+    add_module('safetensors')
+    add_module('safetensors.torch')
+
+    add_module('pandas')
+
+    add_module('aiohttp')
+
+    add_module('langcodes', {
+        'Language': DummyClass,
+        'closest_supported_match': dummy_function,
+        'standardize_tag': dummy_function,
+    })
+
+    add_module('tiktoken')
+
+    add_module('rich.console', {
+        'Console': DummyClass,
+    })
+    add_module('rich.panel', {
+        'Panel': DummyClass,
+    })
+
+    add_module('sentencepiece')
+
+    add_module('hyphen', {
+        'Hyphenator': DummyClass,
+    })
+    add_module('hyphen.dictools', {
+        'LANGUAGES': DummyClass,
+    })
