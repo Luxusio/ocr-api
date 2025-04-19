@@ -5,14 +5,11 @@ OCR API based on [manga-image-translator](https://github.com/zyddnys/manga-image
 ## Installation
 
 ```bash
-git submodule init
-py -3.10 -m venv .venv
-.venv/Scripts/activate
-pip install -r requirements.txt
+uv sync
 ```
 
 ## Build
 
 ```bash
-python build.py
+uv run build.py
 ```
