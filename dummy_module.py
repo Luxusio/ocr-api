@@ -10,7 +10,10 @@ class DummyClass:
 def dummy_function():
     pass
 
-def add_module(module_name: str, module: Dict[str, Any]):
+def add_module(module_name: str, module: Dict[str, Any] | None = None):
+    if module is None:
+        module = {}
+
     dummy_module = types.ModuleType(module_name)
     for name, obj in module.items():
         setattr(dummy_module, name, obj)
@@ -30,7 +33,7 @@ def import_dummy_module():
         'PaddleOCR': DummyClass
     })
 
-    add_module('pydensecrf', {})
+    add_module('pydensecrf')
     add_module('pydensecrf.densecrf', {
         'DenseCRF': DummyClass
     })
@@ -42,4 +45,37 @@ def import_dummy_module():
     add_module('onnxruntime', {
         'InferenceSession': DummyClass
     })
+
+    add_module('langdetect')
+
+    add_module('omegaconf', {
+        'OmegaConf': DummyClass,
+    })
+
+    add_module('manga_ocr', {
+        'MangaOcr': DummyClass,
+    })
+
+    add_module('transformers', {
+        'logging': dummy_function,
+    })
+
+    add_module('deepl')
+
+    add_module('ctranslate2')
+
+    add_module('groq')
+
+    add_module('google', {
+        'genai': dummy_function,
+    })
+
+    add_module('google.genai', {
+        'types': DummyClass,
+    })
+
+    add_module('freetype', {
+        'Face': DummyClass,
+    })
+
 
