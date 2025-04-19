@@ -134,3 +134,18 @@ def import_dummy_module():
     add_module('hyphen.dictools', {
         'LANGUAGES': DummyClass,
     })
+
+    add_module('torchvision.models', {
+        'resnet34': DummyClass,
+    })
+
+    add_module('skimage', {
+        'io': DummyClass,
+    })
+
+    add_module('torchvision')
+
+    add_module('torchvision.transforms', {
+        'ToTensor': DummyClass,
+    })
+
