@@ -1,4 +1,4 @@
-# ocr_api
+# ocr-api
 
 OCR API based on [manga-image-translator](https://github.com/zyddnys/manga-image-translator).
 

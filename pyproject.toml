@@ -1,5 +1,5 @@
 [project]
-name = "ocr_api"
+name = "ocr-api"
 version = "0.1.0"
 description = "OCR API based on Manga Image Translator"
 readme = "README.md"
