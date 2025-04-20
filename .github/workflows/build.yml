@@ -12,8 +12,7 @@ jobs:
       contents: write
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Initialize submodules
         run: git submodule update --init --recursive
@@ -24,17 +23,18 @@ jobs:
         with:
           python-version-file: '.python-version'
 
-      - name: pip install uv
-        run: pip install uv
-        shell: bash
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
 
       - name: Cache .venv
         uses: actions/cache@v4
         with:
           path: .venv
-          key: ${{ runner.os }}-uv-${{ hashFiles('**/pyproject.toml') }}-${{ hashFiles('**/uv.lock') }}
+          key: uv-${{ runner.os }}-${{ hashFiles('**/uv.lock') }}
           restore-keys: |
-            ${{ runner.os }}-uv-
+            uv-${{ runner.os }}
 
       - name: uv sync
         run: uv sync
