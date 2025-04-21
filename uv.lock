@@ -1,6 +1,6 @@
 version = 1
 revision = 1
-requires-python = "==3.10.17"
+requires-python = "==3.10.11"
 resolution-markers = [
     "sys_platform == 'darwin'",
     "platform_machine == 'aarch64' and sys_platform == 'linux'",
