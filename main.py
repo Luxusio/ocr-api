@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from dummy_module import import_dummy_module
+from mock_module import import_dummy_module
 import_dummy_module()
 
 from fastapi import FastAPI, HTTPException
