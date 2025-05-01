@@ -112,6 +112,11 @@ async def ocr_api(request: VideoFrameOcrRequest) -> VideoFrameOcrResponse | None
     return VideoFrameOcrResponse(map=await ocr_img(frame, boxes))
 
 
+@app.get("/")
+def index():
+    return {"status": "ok"}
+
+
 if __name__ == "__main__":
     print(f"--- Starting FastAPI server (Single Process) ---")
     asyncio.run(initialize())
