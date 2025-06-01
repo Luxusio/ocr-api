@@ -26,3 +26,9 @@ manga-image-translator = { path = "./manga_image_translator", editable = true }
 
 [tool.setuptools]
 py-modules = []
+
+[dependency-groups]
+dev = [
+    "ipykernel>=6.29.5",
+    "pip>=25.1.1",
+]
