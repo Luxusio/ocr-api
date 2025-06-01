@@ -18,6 +18,7 @@ import asyncio
 
 
 device = 'cpu'
+DEBUG = os.environ.get('DEBUG', '0') == '1'
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -109,7 +110,20 @@ async def ocr_api(request: VideoFrameOcrRequest) -> VideoFrameOcrResponse | None
     finally:
         cap.release()  # 비디오 캡처 객체 해제
 
-    return VideoFrameOcrResponse(map=await ocr_img(frame, boxes))
+
+    result = await ocr_img(frame, boxes)
+
+    if DEBUG:
+        from PIL import Image
+        copied = frame.copy()
+        for box in boxes:
+            pts = np.array([box.top_left, box.top_right, box.bottom_right, box.bottom_left], dtype=np.int32)
+            cv2.polylines(copied, [pts], isClosed=True, color=(0, 255, 0), thickness=2)
+            cv2.putText(copied, box.name, (box.top_left[0], box.top_left[1] - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1)
+
+        cv2.imwrite(video_path.replace('.mp4', f'_frame_{frame_number}_ocr.png'), copied)
+
+    return VideoFrameOcrResponse(map=result)
 
 
 @app.get("/")
