@@ -68,7 +68,7 @@ async def ocr_img(img_rgb: np.ndarray, boxes: List[BoundingBox]) -> Dict[str, st
         q.__BBOX_NAME__ = box.name
         textlines.append(q)
 
-    textlines = await model._infer(img_rgb, textlines, None, False)
+    textlines = await model._infer(image=img_rgb, textlines=textlines, config=None, verbose=False)
 
     name_text_map: Dict[str, str] = {}
     for textline in textlines:
@@ -120,5 +120,5 @@ def index():
 if __name__ == "__main__":
     print(f"--- Starting FastAPI server (Single Process) ---")
     asyncio.run(initialize())
-    port = int(os.environ.get("PYTHON_PORT", 8000))
+    port = int(os.environ.get("PYTHON_PORT", 8967))
     uvicorn.run(app, host="127.0.0.1", port=port)
